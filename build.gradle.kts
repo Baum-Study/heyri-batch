@@ -25,6 +25,7 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testImplementation("org.springframework.batch:spring-batch-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    implementation("com.h2database:h2:2.2.224")
 }
 
 kotlin {

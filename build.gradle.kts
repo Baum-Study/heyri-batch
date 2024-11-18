@@ -26,6 +26,8 @@ dependencies {
     testImplementation("org.springframework.batch:spring-batch-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     implementation("com.h2database:h2:2.2.224")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("io.github.oshai:kotlin-logging-jvm:7.0.0")
 }
 
 kotlin {

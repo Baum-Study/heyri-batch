@@ -10,7 +10,7 @@ import org.springframework.beans.factory.InitializingBean
 class GreetingTasklet : Tasklet, InitializingBean{
     private val logger = KotlinLogging.logger {}
 
-    override fun execute(contribution: StepContribution, chunkContext: ChunkContext): RepeatStatus? {
+    override fun execute(contribution: StepContribution, chunkContext: ChunkContext): RepeatStatus {
         logger.info { "------------ Task Execute ------------" }
         logger.info { "GreetingTask: ${contribution}, ${chunkContext}"}
 

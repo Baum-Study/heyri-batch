@@ -16,13 +16,16 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.core.io.ClassPathResource
 import org.springframework.core.io.FileSystemResource
 import org.springframework.transaction.PlatformTransactionManager
+import java.util.concurrent.ConcurrentHashMap
+import java.util.concurrent.ConcurrentMap
 
 @Configuration
 class Chapter04Configuration {
 
-    val log = KotlinLogging.logger {}
-    val encoding = "UTF-8"
-    val chunkSize = 100
+    private val log = KotlinLogging.logger {}
+    private val encoding = "UTF-8"
+    private val chunkSize = 100
+    private val aggregateCustomers = ConcurrentHashMap<String, Int>()
 
     @Bean
     fun flatFileItemReader(): FlatFileItemReader<Customer> {
@@ -44,6 +47,10 @@ class Chapter04Configuration {
             .encoding(encoding)
             .delimited().delimiter("\t")
             .names("Name", "Age", "Gender")
+            .append(false)
+            .lineAggregator(CustomLineAggregator())
+            .headerCallback(CustomHeader())
+            .footerCallback(CustomFooter(aggregateCustomers))
             .build()
     }
 
@@ -54,6 +61,14 @@ class Chapter04Configuration {
         return StepBuilder("flatFileStep", jobRepository)
             .chunk<Customer, Customer>(chunkSize, transactionManager)
             .reader(flatFileItemReader())
+            .processor { item ->
+                aggregateCustomers.putIfAbsent("TOTAL_CUSTOMERS", 0)
+                aggregateCustomers.putIfAbsent("TOTAL_AGES", 0)
+
+                aggregateCustomers["TOTAL_CUSTOMERS"] = aggregateCustomers["TOTAL_CUSTOMERS"]!! + 1
+                aggregateCustomers["TOTAL_AGES"] = aggregateCustomers["TOTAL_AGES"]!! + item.age!!
+                item
+            }
             .writer(flatFileItemWriter())
             .build()
     }

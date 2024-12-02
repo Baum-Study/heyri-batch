@@ -17,7 +17,6 @@ import org.springframework.core.io.ClassPathResource
 import org.springframework.core.io.FileSystemResource
 import org.springframework.transaction.PlatformTransactionManager
 import java.util.concurrent.ConcurrentHashMap
-import java.util.concurrent.ConcurrentMap
 
 @Configuration
 class Chapter04Configuration {

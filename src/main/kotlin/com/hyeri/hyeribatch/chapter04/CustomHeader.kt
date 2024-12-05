@@ -1,4 +1,4 @@
-package com.hyeri.hyeribatch.chapter4
+package com.hyeri.hyeribatch.chapter04
 
 import org.springframework.batch.item.file.FlatFileHeaderCallback
 import java.io.Writer

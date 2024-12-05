@@ -1,4 +1,4 @@
-package com.hyeri.hyeribatch.chapter4
+package com.hyeri.hyeribatch.chapter04
 
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.springframework.batch.core.Job
@@ -12,13 +12,12 @@ import org.springframework.batch.item.file.FlatFileItemWriter
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder
 import org.springframework.batch.item.file.builder.FlatFileItemWriterBuilder
 import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.Configuration
 import org.springframework.core.io.ClassPathResource
 import org.springframework.core.io.FileSystemResource
 import org.springframework.transaction.PlatformTransactionManager
 import java.util.concurrent.ConcurrentHashMap
 
-@Configuration
+//@Configuration
 class Chapter04Configuration {
 
     private val log = KotlinLogging.logger {}

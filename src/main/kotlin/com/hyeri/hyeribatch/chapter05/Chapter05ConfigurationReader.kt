@@ -14,7 +14,6 @@ import org.springframework.batch.item.database.builder.JdbcPagingItemReaderBuild
 import org.springframework.batch.item.database.support.SqlPagingQueryProviderFactoryBean
 import org.springframework.batch.item.file.FlatFileItemWriter
 import org.springframework.batch.item.file.builder.FlatFileItemWriterBuilder
-import org.springframework.boot.autoconfigure.batch.BatchProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.core.io.FileSystemResource
@@ -23,8 +22,8 @@ import org.springframework.transaction.PlatformTransactionManager
 import javax.sql.DataSource
 
 
-@Configuration
-class Chapter05Configuration(
+//@Configuration
+class Chapter05ConfigurationReader(
     private val dataSource: DataSource,
 ) {
 
@@ -36,7 +35,7 @@ class Chapter05Configuration(
     fun queryProvider(): PagingQueryProvider {
         return SqlPagingQueryProviderFactoryBean().apply {
             setDataSource(dataSource)
-            setSelectClause("select id, name, age, gender")
+            setSelectClause("selectname, age, gender")
             setFromClause("from customer")
             setWhereClause("where age >= :age")
             setSortKeys(mutableMapOf(

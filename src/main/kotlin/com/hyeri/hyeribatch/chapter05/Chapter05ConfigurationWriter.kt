@@ -1,5 +1,6 @@
 package com.hyeri.hyeribatch.chapter05
 
+import com.hyeri.hyeribatch.entity.Customer
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.springframework.batch.core.Job
 import org.springframework.batch.core.Step
@@ -12,13 +13,12 @@ import org.springframework.batch.item.database.builder.JdbcBatchItemWriterBuilde
 import org.springframework.batch.item.file.FlatFileItemReader
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder
 import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.Configuration
 import org.springframework.core.io.ClassPathResource
 import org.springframework.transaction.PlatformTransactionManager
 import javax.sql.DataSource
 
 
-@Configuration
+//@Configuration
 class Chapter05ConfigurationWriter(
     private val dataSource: DataSource,
 ) {

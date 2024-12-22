@@ -1,5 +1,6 @@
 package com.hyeri.hyeribatch.chapter05
 
+import com.hyeri.hyeribatch.chapter04.Customer
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.springframework.batch.core.Job
 import org.springframework.batch.core.Step
@@ -15,7 +16,6 @@ import org.springframework.batch.item.database.support.SqlPagingQueryProviderFac
 import org.springframework.batch.item.file.FlatFileItemWriter
 import org.springframework.batch.item.file.builder.FlatFileItemWriterBuilder
 import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.Configuration
 import org.springframework.core.io.FileSystemResource
 import org.springframework.jdbc.core.BeanPropertyRowMapper
 import org.springframework.transaction.PlatformTransactionManager
@@ -35,7 +35,7 @@ class Chapter05ConfigurationReader(
     fun queryProvider(): PagingQueryProvider {
         return SqlPagingQueryProviderFactoryBean().apply {
             setDataSource(dataSource)
-            setSelectClause("selectname, age, gender")
+            setSelectClause("select name, age, gender")
             setFromClause("from customer")
             setWhereClause("where age >= :age")
             setSortKeys(mutableMapOf(

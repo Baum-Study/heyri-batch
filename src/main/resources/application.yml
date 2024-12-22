@@ -9,11 +9,24 @@ spring:
   datasource:
     hikari:
       maximum-pool-size: 10
-    url: jdbc:h2:tcp://localhost:1521/testdb
+    url: jdbc:h2:tcp://localhost:1521/testdb;MODE=MYSQL
     driver-class-name: org.h2.Driver
     username: sa
     password:
 
+  jpa:
+    hibernate:
+      ddl-auto: update # create, create-drop, update, none
+
   batch:
-    jdbc:
-      initialize-schema: always
+    job:
+      name: mybatisJob
+
+mybatis:
+  mapper-locations: classpath:/mapper/**/*.xml
+  type-aliases-package: com.hyeri.hyeribatch.entity
+
+#logging:
+#  level:
+#    org.springframework.batch.core.step.item: DEBUG
+#    org.springframework.jdbc.core: INFO # JDBC 로깅은 기본적으로 비활성화

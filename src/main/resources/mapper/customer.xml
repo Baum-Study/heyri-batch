@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hyeri.hyeribatch.mapper.CustomerMapper">
+
+    <resultMap id="customerResult" type="Customer">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="age" column="age"/>
+        <result property="gender" column="gender"/>
+    </resultMap>
+
+
+
+    <select id="selectCustomers" resultMap="customerResult" parameterType="Customer">
+        SELECT id, name, age, gender
+        FROM customer
+        WHERE age > #{age}
+        LIMIT #{_skiprows}, #{_pagesize}
+    </select>
+
+    <insert id="insertCustomer2" parameterType="Customer">
+        INSERT INTO customer2(name, age, gender)
+        VALUES (#{name}, #{age}, #{gender})
+    </insert>
+</mapper>

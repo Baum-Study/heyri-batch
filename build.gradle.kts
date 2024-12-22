@@ -28,8 +28,10 @@ dependencies {
     testImplementation("org.springframework.batch:spring-batch-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     implementation("com.h2database:h2:2.2.224")
-    implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("io.github.oshai:kotlin-logging-jvm:7.0.0")
+    implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    testImplementation("org.jeasy:easy-random-core:5.0.0")
 }
 
 kotlin {

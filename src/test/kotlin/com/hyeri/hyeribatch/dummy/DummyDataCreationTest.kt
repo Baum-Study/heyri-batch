@@ -1,7 +1,7 @@
 package com.hyeri.hyeribatch.dummy
 
-import com.hyeri.hyeribatch.task.Payment
-import com.hyeri.hyeribatch.task.PaymentRepository
+import com.hyeri.hyeribatch.entity.Payment
+import com.hyeri.hyeribatch.chapter05.task.PaymentRepository
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.jeasy.random.EasyRandom
 import org.jeasy.random.EasyRandomParameters

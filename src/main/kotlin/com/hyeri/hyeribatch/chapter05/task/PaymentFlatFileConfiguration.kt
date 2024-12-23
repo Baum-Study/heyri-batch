@@ -1,15 +1,13 @@
 package com.hyeri.hyeribatch.chapter05.task
 
 import com.hyeri.hyeribatch.common.ChunkLoggingListener
-import com.hyeri.hyeribatch.entity.Payment
+import com.hyeri.hyeribatch.common.domain.payment.Payment
 import io.github.oshai.kotlinlogging.KotlinLogging
-import org.springframework.batch.core.ChunkListener
 import org.springframework.batch.core.Job
 import org.springframework.batch.core.Step
 import org.springframework.batch.core.job.builder.JobBuilder
 import org.springframework.batch.core.launch.support.RunIdIncrementer
 import org.springframework.batch.core.repository.JobRepository
-import org.springframework.batch.core.scope.context.ChunkContext
 import org.springframework.batch.core.step.builder.StepBuilder
 import org.springframework.batch.item.database.JdbcPagingItemReader
 import org.springframework.batch.item.database.Order

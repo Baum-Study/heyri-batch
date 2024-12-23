@@ -1,6 +1,6 @@
 package com.hyeri.hyeribatch.chapter05.task
 
-import com.hyeri.hyeribatch.entity.Payment
+import com.hyeri.hyeribatch.common.domain.payment.Payment
 import org.springframework.batch.item.file.mapping.DefaultLineMapper
 import org.springframework.batch.item.file.mapping.FieldSetMapper
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer

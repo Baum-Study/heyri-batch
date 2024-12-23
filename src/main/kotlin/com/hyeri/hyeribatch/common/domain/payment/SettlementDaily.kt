@@ -1,19 +1,18 @@
-package com.hyeri.hyeribatch.entity
+package com.hyeri.hyeribatch.common.domain.payment
 
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import java.math.BigDecimal
-import java.time.LocalDateTime
+import java.time.LocalDate
 
 @Entity
-data class Payment(
+data class SettlementDaily(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long? = null,
+    val id: Long? = null,
     val sellerId: Long,
-    val productId: Long,
-    val productName: String,
-    val price: BigDecimal,
-    val paymentDate: LocalDateTime,
+    val settlementDate: LocalDate,
+    var totalAmount: BigDecimal,
 )
+

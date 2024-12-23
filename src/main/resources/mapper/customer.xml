@@ -12,8 +12,6 @@
         <result property="gender" column="gender"/>
     </resultMap>
 
-
-
     <select id="selectCustomers" resultMap="customerResult" parameterType="Customer">
         SELECT id, name, age, gender
         FROM customer

@@ -1,6 +1,6 @@
 package com.hyeri.hyeribatch.dummy
 
-import com.hyeri.hyeribatch.entity.Payment
+import com.hyeri.hyeribatch.common.domain.payment.Payment
 import com.hyeri.hyeribatch.chapter05.task.PaymentRepository
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.jeasy.random.EasyRandom
@@ -36,26 +36,7 @@ class DummyDataCreationTest {
 
         logger.info { "saved all payments." }
     }
-
-    internal fun <T> Long.mapChunkParallel(
-        chunkSize: Long,
-        block: () -> T,
-    ) =
-        LongStream.range(this, this + chunkSize)
-            .parallel()
-            .mapToObj {
-                block()
-            }.toList()
 }
-
-internal fun <T, R> EasyRandomParameters.randomize(
-    property: KProperty<T>,
-    randomizer: Randomizer<R>,
-) =
-    randomize(
-        { it.name == property.name },
-        randomizer,
-    )
 
 internal object PaymentFactory {
     fun generateRandom(): Payment {

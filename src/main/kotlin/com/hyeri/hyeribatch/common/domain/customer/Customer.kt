@@ -1,4 +1,4 @@
-package com.hyeri.hyeribatch.entity
+package com.hyeri.hyeribatch.common.domain.customer
 
 import jakarta.persistence.*
 

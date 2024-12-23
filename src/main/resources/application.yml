@@ -20,13 +20,23 @@ spring:
 
   batch:
     job:
-      name: mybatisJob
+      name: deleteUserJob
 
 mybatis:
   mapper-locations: classpath:/mapper/**/*.xml
-  type-aliases-package: com.hyeri.hyeribatch.entity
+  type-aliases-package: com.hyeri.hyeribatch.common.domain.customer
 
 #logging:
 #  level:
 #    org.springframework.batch.core.step.item: DEBUG
 #    org.springframework.jdbc.core: INFO # JDBC 로깅은 기본적으로 비활성화
+
+#logging:
+#  level:
+#    org.springframework.batch: DEBUG
+#    org.springframework.batch.core: DEBUG
+#    org.springframework.batch.item: DEBUG
+#    org.springframework.batch.core.step: DEBUG
+#    org.springframework.batch.core.job: DEBUG
+#    org.springframework.batch.core.launch.support: DEBUG
+#    org.springframework.batch.core.repository: DEBUG

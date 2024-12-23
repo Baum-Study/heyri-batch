@@ -1,6 +1,6 @@
 package com.hyeri.hyeribatch.chapter05
 
-import com.hyeri.hyeribatch.entity.Customer
+import com.hyeri.hyeribatch.common.domain.customer.Customer
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.springframework.batch.core.Job
 import org.springframework.batch.core.Step

@@ -1,6 +1,6 @@
 package com.hyeri.hyeribatch.chapter07
 
-import com.hyeri.hyeribatch.entity.Customer
+import com.hyeri.hyeribatch.common.domain.customer.Customer
 import org.apache.ibatis.session.SqlSessionFactory
 import org.mybatis.spring.batch.MyBatisBatchItemWriter
 import org.mybatis.spring.batch.MyBatisPagingItemReader

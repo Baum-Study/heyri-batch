@@ -1,8 +1,7 @@
 package com.hyeri.hyeribatch.chapter05.task
 
-import com.hyeri.hyeribatch.data.MonthlyPaymentDTO
-import com.hyeri.hyeribatch.entity.Payment
-import io.github.oshai.kotlinlogging.KotlinLogging
+import com.hyeri.hyeribatch.common.domain.payment.data.MonthlyPaymentDTO
+import com.hyeri.hyeribatch.common.domain.payment.Payment
 import org.springframework.batch.core.Job
 import org.springframework.batch.core.Step
 import org.springframework.batch.core.job.builder.JobBuilder

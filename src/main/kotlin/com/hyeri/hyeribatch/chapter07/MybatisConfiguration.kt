@@ -1,5 +1,7 @@
 package com.hyeri.hyeribatch.chapter07
 
+import com.hyeri.hyeribatch.chapter08.After20YearsItemProcessor
+import com.hyeri.hyeribatch.chapter08.LowerCaseItemProcessor
 import com.hyeri.hyeribatch.common.domain.customer.Customer
 import org.apache.ibatis.session.SqlSessionFactory
 import org.mybatis.spring.batch.MyBatisBatchItemWriter
@@ -14,6 +16,8 @@ import org.springframework.batch.core.repository.JobRepository
 import org.springframework.batch.core.step.builder.StepBuilder
 import org.springframework.batch.item.file.FlatFileItemWriter
 import org.springframework.batch.item.file.builder.FlatFileItemWriterBuilder
+import org.springframework.batch.item.support.CompositeItemProcessor
+import org.springframework.batch.item.support.builder.CompositeItemProcessorBuilder
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.core.io.FileSystemResource
@@ -22,7 +26,7 @@ import org.springframework.transaction.PlatformTransactionManager
 
 @Configuration
 class MybatisConfiguration(
-    private val sqlSessionFactory: SqlSessionFactory
+    private val sqlSessionFactory: SqlSessionFactory,
 ) {
     private val chunkSize = 1_000
     private val queryIdPrefix = "com.hyeri.hyeribatch.mapper.CustomerMapper"
@@ -41,7 +45,7 @@ class MybatisConfiguration(
     fun customerFlatFileItemWriter(): FlatFileItemWriter<Customer> {
         return FlatFileItemWriterBuilder<Customer>()
             .name("customerFlatFileItemWriter")
-            .resource(FileSystemResource("./output/chapter07/customer_new.csv"))
+            .resource(FileSystemResource("./output/chapter08/customer_new.csv"))
             .encoding("UTF-8")
             .delimited().delimiter("\t")
             .names("name", "age", "gender")
@@ -66,6 +70,16 @@ class MybatisConfiguration(
     }
 
     @Bean
+    fun compositeItemProcessor(): CompositeItemProcessor<Customer, Customer> {
+        return CompositeItemProcessorBuilder<Customer, Customer>()
+            .delegates(listOf(
+                LowerCaseItemProcessor(),
+                After20YearsItemProcessor(),
+            ))
+            .build()
+    }
+
+    @Bean
     fun mybatisReaderStep(jobRepository: JobRepository, transactionManager: PlatformTransactionManager): Step {
         return StepBuilder("mybatisReaderStep", jobRepository)
             .chunk<Customer, Customer>(chunkSize, transactionManager)
@@ -79,7 +93,8 @@ class MybatisConfiguration(
         return StepBuilder("mybatisStep", jobRepository)
             .chunk<Customer, Customer>(chunkSize, transactionManager)
             .reader(myBatisItemReader())
-            .writer(mybatisItemWriter())
+            .processor(compositeItemProcessor())
+            .writer(customerFlatFileItemWriter())
             .build()
     }
 

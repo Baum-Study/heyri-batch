@@ -20,7 +20,7 @@ spring:
 
   batch:
     job:
-      name: mybatisJob
+      name: customerQueryDslPagingJob
 
 mybatis:
   mapper-locations: classpath:/mapper/**/*.xml

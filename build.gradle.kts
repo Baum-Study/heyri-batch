@@ -38,6 +38,8 @@ dependencies {
     implementation("io.github.oshai:kotlin-logging-jvm:7.0.0")
     implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4")
     implementation("org.springframework.boot:spring-boot-starter-web")
+
+    // easyRandom
     testImplementation("org.jeasy:easy-random-core:5.0.0")
 
     // querydsl

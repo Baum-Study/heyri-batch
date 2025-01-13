@@ -20,11 +20,12 @@ spring:
 
   batch:
     job:
-      name: customerQueryDslPagingJob
+      name: flowControlJob
 
 mybatis:
   mapper-locations: classpath:/mapper/**/*.xml
-  type-aliases-package: com.hyeri.hyeribatch.common.domain.customer
+  type-aliases-package: com.hyeri.hyeribatch.common.domain
+  config-location: classpath:/config/mybatis-config.xml
 
 #logging:
 #  level:

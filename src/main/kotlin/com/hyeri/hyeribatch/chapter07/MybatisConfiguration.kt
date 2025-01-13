@@ -25,7 +25,7 @@ import org.springframework.transaction.PlatformTransactionManager
 
 
 @Configuration
-class MybatisConfiguration(
+class MybatisBatchConfiguration(
     private val sqlSessionFactory: SqlSessionFactory,
 ) {
     private val chunkSize = 1_000
@@ -37,7 +37,6 @@ class MybatisConfiguration(
             .sqlSessionFactory(sqlSessionFactory)
             .pageSize(chunkSize)
             .queryId("${queryIdPrefix}.selectCustomers")
-            .parameterValues(mapOf("age" to 20))
             .build()
     }
 

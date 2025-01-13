@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hyeri.hyeribatch.mapper.ProductMapper">
+
+    <select id="selectProduct" resultType="Product" parameterType="Product">
+        SELECT *
+        FROM PRODUCT
+        WHERE
+            CREATED_AT &lt;= DATEADD(WEEK, -2, CURRENT_TIMESTAMP)
+        LIMIT #{_skiprows}, #{_pagesize}
+    </select>
+
+    <insert id="updateDeliveryStatus" parameterType="Product">
+        UPDATE product
+        SET
+            delivery_status = #{deliveryStatus}
+        WHERE
+            id = #{id}
+    </insert>
+</mapper>
